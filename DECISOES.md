@@ -315,4 +315,7 @@ Sugestões, medidas numa cópia, sem mudar o repositório:
 
 ## 6. Publicação
 
-- 🤖 **IA**: repositório local atualizado e testado; ainda não publicado. Publico quando o Cassio pedir.
+- 🧠 **Cassio**: "pode publicar".
+- 🤖 **IA**: publicou o repositório público em https://github.com/cassiomiller10-hash/conty-views-suspeitas, com a branch `main` e a mesma autoria dos anteriores.
+- ✅ A página do repositório foi aberta no navegador: o README aparece completo, inclusive o diagrama do fluxo, e as âncoras do sumário batem com os títulos. Antes de publicar, um clone limpo passou por `npm ci`, pelos 77 testes e por `npm run evaluate`, que não mudou nenhum arquivo.
+- A entrega na plataforma é feita pelo Cassio.
