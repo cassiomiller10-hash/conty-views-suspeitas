@@ -37,11 +37,11 @@ const CODE_WORDS = [
   "Infinity",
 ];
 
-// Toda quantidade vem com unidade: %, h, views, horas, vezes, dias; ou é um dia do mês ("dia 12").
+// Toda quantidade vem com unidade: %, h, views, horas, vezes, dias, leituras; ou é um dia do mês ("dia 12").
 // Um número pode vir encadeado a outro antes da unidade: "22 de 30 horas", "500 ou 1.200 views",
 // "de 2.300 para 440 views por hora". A cadeia precisa terminar numa unidade.
 const NUMBER = /\d[\d.,]*/g;
-const UNIT_AFTER = /^(?:(?: de | ou | a | e | para )(?:cerca de )?\d[\d.,]*)*(?:%|h\b|h\d|\s+(?:views?|horas?|vezes|dias?|minutos)\b)/;
+const UNIT_AFTER = /^(?:(?: de | ou | a | e | para )(?:cerca de )?\d[\d.,]*)*(?:%|h\b|h\d|\s+(?:views?|horas?|vezes|dias?|minutos|leituras?)\b)/;
 const DAY_BEFORE = /dia\s$/;
 
 function unitlessNumbers(reason: string): string[] {
@@ -69,6 +69,7 @@ const EXAMPLES: Array<[string, () => ReturnType<typeof classify>]> = [
   ["horas faltando", () => classify(withoutReadings(smallCreator(), [30, 31, 75, 120]))],
   ["remoção", () => classify(withFall(smallCreator(), 90, 400))],
   ["série curta", () => classify(firstHours(smallCreator(), 30))],
+  ["total arredondado pela fonte", () => classify({ ...smallCreator(), readings: smallCreator().readings.map((reading) => (reading === null ? reading : Math.round(reading / 100) * 100)) })],
 ];
 
 describe("o motivo dá para ler sem conhecer o código", () => {

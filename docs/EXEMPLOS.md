@@ -93,7 +93,9 @@ HTTP 200
     "hours": 168,
     "missing_readings": 0,
     "longest_gap_hours": 0,
-    "drop_hours": 0
+    "drop_hours": 0,
+    "nonzero_readings": 169,
+    "round_readings": 2
   },
   "audience_timezone": "America/Sao_Paulo"
 }
@@ -192,7 +194,9 @@ HTTP 200
     "hours": 168,
     "missing_readings": 0,
     "longest_gap_hours": 0,
-    "drop_hours": 0
+    "drop_hours": 0,
+    "nonzero_readings": 169,
+    "round_readings": 2
   },
   "audience_timezone": "America/Sao_Paulo"
 }
@@ -287,7 +291,9 @@ HTTP 200
     "hours": 168,
     "missing_readings": 0,
     "longest_gap_hours": 0,
-    "drop_hours": 0
+    "drop_hours": 0,
+    "nonzero_readings": 169,
+    "round_readings": 4
   },
   "audience_timezone": "America/Sao_Paulo"
 }
@@ -385,7 +391,9 @@ HTTP 200
     "hours": 168,
     "missing_readings": 0,
     "longest_gap_hours": 0,
-    "drop_hours": 0
+    "drop_hours": 0,
+    "nonzero_readings": 169,
+    "round_readings": 0
   },
   "audience_timezone": "America/Sao_Paulo"
 }
@@ -482,7 +490,9 @@ HTTP 200
     "hours": 168,
     "missing_readings": 0,
     "longest_gap_hours": 0,
-    "drop_hours": 0
+    "drop_hours": 0,
+    "nonzero_readings": 169,
+    "round_readings": 2
   },
   "audience_timezone": "America/Sao_Paulo"
 }
@@ -501,7 +511,7 @@ HTTP 200
 ```json
 {
   "classification": "inconclusive",
-  "reason": "Dados insuficientes para avaliar: a série cobre 30 horas, e são necessárias pelo menos 48 horas para comparar um dia com o outro. Envie leituras medidas de hora em hora, sem preenchimento, cobrindo pelo menos 48 horas.",
+  "reason": "Dados insuficientes para avaliar: a série cobre 30 horas, e são necessárias pelo menos 48 horas para comparar um dia com o outro. Envie leituras exatas, medidas de hora em hora, sem arredondamento nem preenchimento, cobrindo pelo menos 48 horas.",
   "families_fired": [],
   "analyzed_window": null,
   "signals": [],
@@ -515,7 +525,9 @@ HTTP 200
     "hours": 30,
     "missing_readings": 0,
     "longest_gap_hours": 0,
-    "drop_hours": 0
+    "drop_hours": 0,
+    "nonzero_readings": 31,
+    "round_readings": 2
   },
   "audience_timezone": "America/Sao_Paulo"
 }
@@ -648,6 +660,8 @@ HTTP 200
     "roundShare": 0.4,
     "roundMinViews": 200,
     "roundMinHours": 10,
+    "roundStep": 100,
+    "roundedSourceShare": 0.95,
     "removalShare": 0.01,
     "removalMinViews": 100
   }

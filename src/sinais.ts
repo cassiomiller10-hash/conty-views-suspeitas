@@ -292,7 +292,7 @@ export function roundCounts(ctx: SignalContext, window: Window): Signal {
       explanation: `Há poucas horas com mais de ${LIMITS.roundMinViews} views para avaliar centenas exatas.`,
     };
   }
-  const round = large.filter((value) => value % 100 === 0);
+  const round = large.filter((value) => value % LIMITS.roundStep === 0);
   const share = round.length / large.length;
   if (share >= LIMITS.roundShare) {
     const frequency = new Map<number, number>();

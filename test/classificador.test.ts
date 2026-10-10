@@ -178,6 +178,25 @@ describe("dados insuficientes", () => {
     expect(result.insufficient_data[0]).toContain("há um buraco de 7 horas sem leitura");
   });
 
+  it("total arredondado pela fonte: dados insuficientes, dizendo o que falta", () => {
+    const base = smallCreator();
+    const result = classify({ ...base, readings: base.readings.map((reading) => (reading === null ? reading : Math.round(reading / 100) * 100)) });
+    expect(result.classification).toBe("inconclusive");
+    expect(result.data_quality).toMatchObject({ nonzero_readings: 169, round_readings: 169 });
+    expect(result.insufficient_data).toEqual([
+      "o total parece arredondado pela fonte (em 169 de 169 leituras, ele é uma centena exata, o que com contagem exata acontece em cerca de 1% das leituras)",
+    ]);
+    expect(result.reason).toContain("Envie leituras exatas, medidas de hora em hora, sem arredondamento nem preenchimento");
+  });
+
+  it("vídeo que passa a semana com o total em zero não é confundido com total arredondado", () => {
+    // Zero é centena exata, mas não diz nada sobre arredondamento: só leituras acima de zero contam.
+    const readings = Array.from({ length: 169 }, (_, index) => (index < 160 ? 0 : (index - 159) * 7));
+    const result = classify({ startMs: Date.UTC(2026, 2, 8, 3), readings });
+    expect(result.data_quality).toMatchObject({ nonzero_readings: 9, round_readings: 0 });
+    expect(result.insufficient_data).toEqual([]);
+  });
+
   it("buraco de 6 horas ainda é aceito", () => {
     expect(classify(withoutReadings(smallCreator(), [40, 41, 42, 43, 44, 45])).insufficient_data).toEqual([]);
   });

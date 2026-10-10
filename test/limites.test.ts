@@ -3,7 +3,7 @@
 
 import { describe, expect, it } from "vitest";
 import { classify } from "../src/classificador.ts";
-import { EXAMPLE_START, algorithmExit, hourAt, smallCreator, twins, withFall } from "../src/exemplos.ts";
+import { EXAMPLE_START, algorithmExit, exactDrip, hourAt, smallCreator, twins, withFall } from "../src/exemplos.ts";
 import { TYPES, accumulate, generateSeries, organicCounts, plateauCounts } from "../src/gerador.ts";
 import { classifyDatasetSeries } from "../src/avaliacao.ts";
 import { createRng } from "../src/prng.ts";
@@ -15,15 +15,6 @@ const rounded = (series: HourlySeries, step: number): HourlySeries => ({
 });
 
 describe("onde o critério erra contra o criador", () => {
-  it("contagem arredondada pela fonte (total em centenas, como em '1,2 mil'): o viral orgânico sai suspeito", () => {
-    const viral = twins().organic;
-    expect(classify(viral).classification).toBe("no_evidence");
-    const result = classify(rounded(viral, 100));
-    // Toda hora vira centena exata, e nas horas fracas a contagem anda de 100 em 100: o corte também dispara.
-    expect(result.classification).toBe("suspicious");
-    expect(result.families_fired).toEqual(["abrupt_end", "regularity"]);
-  });
-
   it("duas ações da plataforma juntas: saída do algoritmo e limpeza de 2% das views", () => {
     const exit = algorithmExit();
     const at = hourAt(13, 10);
@@ -45,6 +36,13 @@ describe("onde o critério erra contra o criador", () => {
 });
 
 describe("onde o critério deixa compra passar", () => {
+  it("o custo da regra do total arredondado: gotejamento exato a partir de um total redondo também não é julgado", () => {
+    expect(classify(exactDrip()).classification).toBe("suspicious");
+    const result = classify(exactDrip(5_000));
+    expect(result.classification).toBe("inconclusive");
+    expect(result.insufficient_data).toEqual([expect.stringContaining("o total parece arredondado pela fonte")]);
+  });
+
   const dripShare = (share: number) => {
     const organic = organicCounts(createRng(5), EXAMPLE_START, {
       base: 40,
@@ -69,6 +67,25 @@ describe("onde o critério deixa compra passar", () => {
 });
 
 describe("onde o critério aguenta", () => {
+  it("contagem arredondada pela fonte (total em centenas ou milhares, como em '1,2 mil'): dados insuficientes, não acusação", () => {
+    const viral = twins().organic;
+    expect(classify(viral).classification).toBe("no_evidence");
+    for (const step of [100, 1_000]) {
+      const result = classify(rounded(viral, step));
+      // Sem a regra, toda hora viraria centena exata e as horas fracas andariam de 100 em 100:
+      // o viral saía suspeito (corte e regularidade). Agora a série não é julgada.
+      expect(result.classification).toBe("inconclusive");
+      expect(result.signals).toEqual([]);
+      expect(result.insufficient_data).toEqual([expect.stringContaining("o total parece arredondado pela fonte")]);
+    }
+  });
+
+  it("um total exato que às vezes cai numa centena exata não aciona a regra", () => {
+    const result = classify(smallCreator());
+    expect(result.data_quality.round_readings).toBeLessThan(5);
+    expect(result.insufficient_data).toEqual([]);
+  });
+
   it("madrugada preenchida em linha reta pelo coletor, toda noite, não acusa um criador comum", () => {
     const base = smallCreator();
     const readings = [...base.readings];

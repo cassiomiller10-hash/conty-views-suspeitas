@@ -160,6 +160,9 @@ export type DataQuality = {
   missing_readings: number;
   longest_gap_hours: number;
   drop_hours: number;
+  /** Leituras com total acima de zero, e quantas delas são centenas exatas (sinal de total arredondado pela fonte). */
+  nonzero_readings: number;
+  round_readings: number;
 };
 
 export function dataQuality(series: HourlySeries, hours: Hours): DataQuality {
@@ -175,10 +178,13 @@ export function dataQuality(series: HourlySeries, hours: Hours): DataQuality {
       run = 0;
     }
   }
+  const nonzero = series.readings.filter((reading): reading is number => reading !== null && reading > 0);
   return {
     hours: series.readings.length - 1,
     missing_readings: missing,
     longest_gap_hours: longest,
     drop_hours: hours.status.filter((value) => value === "drop").length,
+    nonzero_readings: nonzero.length,
+    round_readings: nonzero.filter((reading) => reading % LIMITS.roundStep === 0).length,
   };
 }

@@ -450,7 +450,9 @@
         "hours": 168,
         "missing_readings": 0,
         "longest_gap_hours": 0,
-        "drop_hours": 0
+        "drop_hours": 0,
+        "nonzero_readings": 169,
+        "round_readings": 4
       },
       "audience_timezone": "America/Sao_Paulo"
     },
@@ -536,7 +538,9 @@
         "hours": 168,
         "missing_readings": 0,
         "longest_gap_hours": 0,
-        "drop_hours": 0
+        "drop_hours": 0,
+        "nonzero_readings": 169,
+        "round_readings": 2
       },
       "audience_timezone": "America/Sao_Paulo"
     },
@@ -620,7 +624,9 @@
         "hours": 168,
         "missing_readings": 0,
         "longest_gap_hours": 0,
-        "drop_hours": 0
+        "drop_hours": 0,
+        "nonzero_readings": 169,
+        "round_readings": 2
       },
       "audience_timezone": "America/Sao_Paulo"
     }

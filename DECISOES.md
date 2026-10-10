@@ -181,12 +181,12 @@ Registro cronológico do raciocínio. Cada entrada separa quem fez o quê:
 > - Os motivos dos exemplos não contêm nomes de campos do código nem números sem unidade.
 > - O bloco do README é idêntico ao medido, a taxa está dentro da meta e o dataset regenerado tem o mesmo hash.
 
-### 🤖 Pontos que o desenho não fecha (padrões adotados pela IA; o Cassio confirma depois)
+### 🤖 Pontos que o desenho não fecha (padrões adotados pela IA, confirmados pelo Cassio)
 
 - 🤖 **IA**: o texto das decisões chegou com uma frase de abertura e uma de fechamento dirigidas ao Cassio por quem o redigiu ("O texto 2 é a sua resposta do Desafio 03 […]", "Se o texto 2 era para ser um rascunho seu do 09 […]"). Apontei isso antes de começar e tratei como desenho só a parte "Decisões — Desafio 09".
 - 🧠 **Cassio**: confirmou que reuniu ideias de IA para montar o desenho. Isso fica registrado aqui e na declaração de uso de IA do README.
 
-Adotei estes padrões, que o Cassio confirma depois:
+Adotei estes padrões, que o Cassio confirmou depois da avaliação crítica (seção 5):
 
 1. **Formato da entrada.** `series` é uma lista de `{ at, cumulative_views }`, com nomes em inglês, como o resto do contrato. A hora cheia é conferida no fuso do próprio ponto e depois convertida para UTC; todos os pontos precisam cair na mesma grade de hora em hora.
 2. **Contagem das horas.** As 48 horas mínimas são contadas entre a primeira e a última leitura. "Horas faltando" são leituras faltando. "Buraco maior que 6 horas" é mais de 6 leituras seguidas faltando. Mais de 30 dias volta 422 (o desenho dá o máximo, mas não a resposta), série vazia volta 422, e uma leitura só é dado insuficiente.
@@ -263,7 +263,7 @@ Cada rodada abaixo é a semente 7; a do relatório não foi aberta antes de o cl
 
 | Cenário | Resultado | Leitura |
 |---|---|---|
-| Viral orgânico com o total **arredondado pela fonte** (centenas, como "1,2 mil") | **suspeito** (corte e regularidade) | Falso positivo. Toda hora vira centena exata e, nas horas fracas, a contagem anda de 100 em 100, o que simula um corte. Com milhares, até a madrugada dispara. |
+| Viral orgânico com o total **arredondado pela fonte** (centenas, como "1,2 mil") | **suspeito** (corte e regularidade) | Falso positivo. Toda hora vira centena exata e, nas horas fracas, a contagem anda de 100 em 100, o que simula um corte. Com milhares, até a madrugada dispara. Resolvido pela regra A (seção 5). |
 | O mesmo viral com as contagens multiplicadas por 100 | inconclusivo (centenas exatas) | É o mesmo modo de falha, mais brando. |
 | **Saída do algoritmo e limpeza de 2%** das views pela plataforma | **suspeito** (corte e remoção) | Falso positivo. A premissa "nenhum comportamento humano produz dois sinais" vale para o público, não para duas ações da plataforma. |
 | Madrugada preenchida em linha reta pelo coletor, toda noite | sem indícios | O medo do desenho não se confirmou nos cenários testados. |
@@ -277,8 +277,42 @@ Sugestões, medidas numa cópia, sem mudar o repositório:
 
 - **A. Total arredondado vira dado insuficiente.** Se 95% ou mais das leituras do total são centenas exatas, a fonte arredonda (entre pessoas, isso acontece em 1% das leituras), e a resposta é inconclusiva por dados insuficientes. Medido: elimina o falso positivo do arredondamento e não muda nenhum número do dataset. O custo teórico é um vídeo sem nenhum público que recebe só lotes redondos a partir de um total redondo; ele escaparia como dado insuficiente.
 - **B. Remoção só acima de 5%.** Medido: tira o caso da limpeza de 2%, mas uma limpeza de 8% junto com a saída do algoritmo continua dando suspeito. Custa 2 detecções em 3.000 nas 10 sementes. É uma correção parcial; o problema de fundo (duas ações da plataforma) fica documentado.
-- **C. Mais séries legítimas.** Para o limite superior de 95% ficar abaixo de 0,5% com zero erros, seriam necessárias cerca de 740 séries legítimas; hoje são 600.
+- **C. Mais séries legítimas.** Para o limite superior de 95% ficar abaixo de 0,5% com zero erros, seriam necessárias 736 séries legítimas (o menor n com 1 − 0,025^(1/n) abaixo de 0,5%); hoje são 600.
 
-## 5. Publicação
+## 5. Decisão sobre a avaliação crítica
 
-- 🤖 **IA**: repositório local criado e testado; ainda não publicado. Fica a cargo do Cassio decidir sobre as sugestões da seção 4 e pedir a publicação.
+### 🧠 Decisão do Cassio
+
+> confirmo os padrões, implementa A e documenta B e C.
+>
+> tbm quero read-me bem documentado
+
+### 🤖 Implementação
+
+- 🤖 **IA, regra A (o total arredondado vira dados insuficientes):**
+  - **A regra.** Se 95% ou mais das leituras acima de zero são centenas exatas, a resposta é `inconclusive` por dados insuficientes, com o motivo "o total parece arredondado pela fonte (em X de Y leituras, ele é uma centena exata, o que com contagem exata acontece em cerca de 1% das leituras)". O pedido final do motivo passou a ser leituras exatas, sem arredondamento nem preenchimento.
+  - **Leituras zeradas não contam.** Zero é centena exata, mas não diz nada sobre arredondamento: um vídeo que passa dias com o total em zero não pode ser confundido com total arredondado.
+  - **Onde ficou no código.** Os limites `roundStep` (100, o mesmo das centenas exatas) e `roundedSourceShare` (0,95) entraram em `src/criterios.ts`. A resposta ganhou `nonzero_readings` e `round_readings` em `data_quality`.
+  - **Versão do critério.** Continua `v1`, porque a regra entrou antes da primeira publicação e nenhuma decisão foi tomada com a versão anterior.
+- 🤖 **IA, o custo da regra A, documentado e testado:** um gotejamento exato que parte de um total redondo também cai em dados insuficientes. Por isso, o gotejamento exato dos exemplos passou a partir de 4.321 views (um vídeo tem views antes da compra), e o caso do total redondo virou teste em `test/limites.test.ts`.
+- 🤖 **IA, B e C:** ficaram documentados no README, na tabela "Alternativas consideradas" (B medida e não adotada, com o resultado da medição; C com as 736 séries) e em "Próximos passos".
+- 🤖 **IA, README:** reescrito com sumário, um diagrama do fluxo, como ler o bloco gerado, o critério com os detalhes de cada sinal, os casos de dados insuficientes, a referência completa da API (campos, erros, endpoints) e da resposta (campos e o significado do valor de cada sinal), dataset e sementes, o que a avaliação faz passo a passo e como mudar o critério, o mapa do código e o que cada arquivo de teste prova.
+- 🤖 **IA, na releitura do README:** uma frase dizia que as saídas do algoritmo "nunca saem suspeitas". Isso vale para o dataset do relatório, mas, nas 10 sementes da faixa, uma saiu. A frase foi corrigida para apontar a tabela e a explicação.
+
+### ✅ Validação
+
+- ✅ **Testes novos da regra A:**
+  - o total arredondado dá dados insuficientes, com a frase exata;
+  - o viral orgânico com o total arredondado em centenas e em milhares não é mais acusado;
+  - um total exato que às vezes cai numa centena não aciona a regra;
+  - o vídeo com o total zerado não é confundido com total arredondado;
+  - o custo da regra (gotejamento exato a partir de 5.000 views).
+
+  O detector de número sem unidade passou a aceitar "leituras" como unidade e checa também esse motivo.
+- ✅ **Mutações da regra A.** "Regra desligada" foi pega. "Contar as leituras zeradas" escapou na primeira rodada, porque nenhum teste tinha um vídeo com o total zerado por muito tempo. Escrevi esse teste, e a mutação passou a ser pega.
+- ✅ **Números do dataset.** `npm run evaluate` regenerou os arquivos, e nenhum número mudou: falso positivo de 0 em 600, inconclusivo de 3 em 340 nos comuns, detecção de 264 em 300 nas típicas, 1 falso positivo em 6.000 e 2.624 de 3.000 detecções nas 10 sementes. Também não mudou nada na semente de desenvolvimento. O bloco do README só mudou na resposta completa da saída do algoritmo, que ganhou os dois campos novos de `data_quality`.
+- ✅ 77 testes passando. Os exemplos de `docs/EXEMPLOS.md` foram regenerados contra o servidor real.
+
+## 6. Publicação
+
+- 🤖 **IA**: repositório local atualizado e testado; ainda não publicado. Publico quando o Cassio pedir.

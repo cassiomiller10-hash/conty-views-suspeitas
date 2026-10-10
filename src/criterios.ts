@@ -45,6 +45,11 @@ export const LIMITS = {
   roundShare: 0.4,
   roundMinViews: 200,
   roundMinHours: 10,
+  roundStep: 100,
+
+  // Total arredondado pela fonte ("1,2 mil"): com contagem exata, só 1% das leituras cai numa centena
+  // exata; com 95% ou mais, a série não dá para julgar
+  roundedSourceShare: 0.95,
 
   // Remoção: o total acumulado cai
   removalShare: 0.01,

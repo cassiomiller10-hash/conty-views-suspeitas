@@ -41,7 +41,7 @@ export function classify(series: HourlySeries, audienceTimezone: string = DEFAUL
   if (missing.length > 0) {
     return {
       classification: "inconclusive",
-      reason: `Dados insuficientes para avaliar: ${missing.join("; ")}. Envie leituras medidas de hora em hora, sem preenchimento, cobrindo pelo menos ${LIMITS.minHours} horas.`,
+      reason: `Dados insuficientes para avaliar: ${missing.join("; ")}. Envie leituras exatas, medidas de hora em hora, sem arredondamento nem preenchimento, cobrindo pelo menos ${LIMITS.minHours} horas.`,
       families_fired: [],
       analyzed_window: null,
       signals: [],
@@ -104,6 +104,13 @@ function insufficientData(series: HourlySeries, quality: DataQuality, clock: Clo
       if (run === quality.longest_gap_hours) gapStart = index - run + 1;
     });
     problems.push(`há um buraco de ${quality.longest_gap_hours} horas sem leitura a partir das ${clock.hourOfDay(gapStart)}, acima do limite de ${LIMITS.maxGapHours} horas`);
+  }
+  // Com o total arredondado, toda hora vira centena exata e as horas fracas andam de 100 em 100: os
+  // sinais perderiam a precisão e poderiam acusar um criador honesto.
+  if (quality.nonzero_readings >= 2 && quality.round_readings >= LIMITS.roundedSourceShare * quality.nonzero_readings) {
+    problems.push(
+      `o total parece arredondado pela fonte (em ${quality.round_readings} de ${quality.nonzero_readings} leituras, ele é uma centena exata, o que com contagem exata acontece em cerca de 1% das leituras)`,
+    );
   }
   return problems;
 }

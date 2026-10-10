@@ -19,6 +19,7 @@ describe("POST /classify", () => {
     });
     expect(res.body.reason).toContain("Um indício isolado não basta para acusar.");
     expect(res.body.analyzed_window).toMatchObject({ start: "2026-03-10T19:00:00-03:00", kind: "peak" });
+    expect(res.body.data_quality).toMatchObject({ hours: 168, missing_readings: 0, nonzero_readings: 169 });
     expect(res.body.signals.map((item: { signal: string }) => item.signal)).toEqual(["abrupt_end", "awake_at_night", "low_variation", "round_counts", "removal"]);
     for (const item of res.body.signals) {
       expect(Object.keys(item)).toEqual(expect.arrayContaining(["family", "evaluable", "fired", "value", "threshold", "fires_when", "explanation"]));

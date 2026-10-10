@@ -33,9 +33,13 @@ export function smallCreator(): HourlySeries {
   return series(organicCounts(createRng(11), EXAMPLE_START, { ...CREATOR, base: 40 }));
 }
 
-/** Gotejamento exato: 1.000 views em toda hora, dia e noite, sem público orgânico. */
-export function exactDrip(): HourlySeries {
-  return series(Array.from({ length: SERIES_HOURS }, () => 1_000), 0);
+/**
+ * Gotejamento exato: 1.000 views em toda hora, dia e noite, sem público orgânico, sobre um vídeo que já
+ * tinha 4.321 views. `initial` redondo faz toda leitura do total virar centena exata, e a série cai na
+ * regra do total arredondado (ver test/limites.test.ts).
+ */
+export function exactDrip(initial = 4_321): HourlySeries {
+  return series(Array.from({ length: SERIES_HOURS }, () => 1_000), initial);
 }
 
 const VIRAL_START = hourAt(10, 14);
