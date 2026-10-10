@@ -1,0 +1,6767 @@
+{
+  "criteria_version": "v1",
+  "rule": "suspeito exige duas famílias de sinais; com uma, inconclusivo",
+  "seed": 2026,
+  "dataset": {
+    "path": "data/dataset.jsonl",
+    "series": 1000,
+    "hours_per_series": 168,
+    "sha256": "0a0433ffbd08158a660fc3245a833e47dcd11c15b28cb23b719edda0cedfa91c"
+  },
+  "targets": {
+    "falsePositiveMax": 0.005,
+    "falsePositiveCommonMax": 0,
+    "inconclusiveCommonMax": 0.02,
+    "detectionTypicalMin": 0.8
+  },
+  "false_positive": {
+    "count": 0,
+    "total": 600,
+    "rate": 0
+  },
+  "false_positive_common": {
+    "count": 0,
+    "total": 340,
+    "rate": 0
+  },
+  "false_positive_hard": {
+    "count": 0,
+    "total": 260,
+    "rate": 0
+  },
+  "inconclusive_common": {
+    "count": 3,
+    "total": 340,
+    "rate": 0.008823529411764706
+  },
+  "inconclusive_hard": {
+    "count": 96,
+    "total": 260,
+    "rate": 0.36923076923076925
+  },
+  "detection_typical": {
+    "count": 264,
+    "total": 300,
+    "rate": 0.88
+  },
+  "detection_disguised": {
+    "count": 0,
+    "total": 100,
+    "rate": 0
+  },
+  "false_positive_ci95": [
+    0,
+    0.0061292713306692614
+  ],
+  "by_type": [
+    {
+      "type": "small_creator",
+      "label": "Criador pequeno com ciclo diário",
+      "group": "legit_common",
+      "expected": "no_evidence",
+      "series": 100,
+      "no_evidence": 100,
+      "inconclusive": 0,
+      "suspicious": 0
+    },
+    {
+      "type": "slow_growth",
+      "label": "Crescimento lento",
+      "group": "legit_common",
+      "expected": "no_evidence",
+      "series": 60,
+      "no_evidence": 60,
+      "inconclusive": 0,
+      "suspicious": 0
+    },
+    {
+      "type": "weekend_peak",
+      "label": "Pico de fim de semana",
+      "group": "legit_common",
+      "expected": "no_evidence",
+      "series": 60,
+      "no_evidence": 59,
+      "inconclusive": 1,
+      "suspicious": 0
+    },
+    {
+      "type": "organic_viral",
+      "label": "Viral orgânico",
+      "group": "legit_common",
+      "expected": "no_evidence",
+      "series": 120,
+      "no_evidence": 118,
+      "inconclusive": 2,
+      "suspicious": 0
+    },
+    {
+      "type": "big_account_mention",
+      "label": "Menção de conta grande",
+      "group": "legit_hard",
+      "expected": "no_evidence",
+      "series": 80,
+      "no_evidence": 80,
+      "inconclusive": 0,
+      "suspicious": 0
+    },
+    {
+      "type": "algorithm_exit",
+      "label": "Saída do algoritmo",
+      "group": "legit_hard",
+      "expected": "inconclusive",
+      "series": 60,
+      "no_evidence": 26,
+      "inconclusive": 34,
+      "suspicious": 0
+    },
+    {
+      "type": "paid_promotion",
+      "label": "Impulsionamento pago na plataforma",
+      "group": "legit_hard",
+      "expected": "inconclusive",
+      "series": 60,
+      "no_evidence": 11,
+      "inconclusive": 49,
+      "suspicious": 0
+    },
+    {
+      "type": "multi_timezone",
+      "label": "Público em vários fusos",
+      "group": "legit_hard",
+      "expected": "no_evidence_or_inconclusive",
+      "series": 60,
+      "no_evidence": 47,
+      "inconclusive": 13,
+      "suspicious": 0
+    },
+    {
+      "type": "bought_plateau",
+      "label": "Platô comprado",
+      "group": "bought_typical",
+      "expected": "suspicious",
+      "series": 80,
+      "no_evidence": 0,
+      "inconclusive": 2,
+      "suspicious": 78
+    },
+    {
+      "type": "drip_feed",
+      "label": "Gotejamento constante",
+      "group": "bought_typical",
+      "expected": "suspicious",
+      "series": 60,
+      "no_evidence": 0,
+      "inconclusive": 1,
+      "suspicious": 59
+    },
+    {
+      "type": "spike_then_removal",
+      "label": "Pico seguido de remoção",
+      "group": "bought_typical",
+      "expected": "suspicious",
+      "series": 50,
+      "no_evidence": 0,
+      "inconclusive": 0,
+      "suspicious": 50
+    },
+    {
+      "type": "viral_plus_package",
+      "label": "Viral orgânico com pacote somado",
+      "group": "bought_typical",
+      "expected": "suspicious",
+      "series": 70,
+      "no_evidence": 6,
+      "inconclusive": 27,
+      "suspicious": 37
+    },
+    {
+      "type": "round_batches",
+      "label": "Entregas em lotes redondos",
+      "group": "bought_typical",
+      "expected": "suspicious",
+      "series": 40,
+      "no_evidence": 0,
+      "inconclusive": 0,
+      "suspicious": 40
+    },
+    {
+      "type": "human_mimic",
+      "label": "Compra que imita gente",
+      "group": "bought_disguised",
+      "expected": "escapes",
+      "series": 50,
+      "no_evidence": 46,
+      "inconclusive": 4,
+      "suspicious": 0
+    },
+    {
+      "type": "small_purchase",
+      "label": "Compra pequena (menos de 15% do volume)",
+      "group": "bought_disguised",
+      "expected": "escapes",
+      "series": 50,
+      "no_evidence": 50,
+      "inconclusive": 0,
+      "suspicious": 0
+    }
+  ],
+  "alternatives": [
+    {
+      "families_to_accuse": 1,
+      "false_positive": {
+        "count": 99,
+        "total": 600,
+        "rate": 0.165
+      },
+      "false_positive_common": {
+        "count": 3,
+        "total": 340,
+        "rate": 0.008823529411764706
+      },
+      "false_positive_hard": {
+        "count": 96,
+        "total": 260,
+        "rate": 0.36923076923076925
+      },
+      "inconclusive_common": {
+        "count": 0,
+        "total": 340,
+        "rate": 0
+      },
+      "inconclusive_hard": {
+        "count": 0,
+        "total": 260,
+        "rate": 0
+      },
+      "detection_typical": {
+        "count": 294,
+        "total": 300,
+        "rate": 0.98
+      },
+      "detection_disguised": {
+        "count": 4,
+        "total": 100,
+        "rate": 0.04
+      }
+    },
+    {
+      "families_to_accuse": 2,
+      "false_positive": {
+        "count": 0,
+        "total": 600,
+        "rate": 0
+      },
+      "false_positive_common": {
+        "count": 0,
+        "total": 340,
+        "rate": 0
+      },
+      "false_positive_hard": {
+        "count": 0,
+        "total": 260,
+        "rate": 0
+      },
+      "inconclusive_common": {
+        "count": 3,
+        "total": 340,
+        "rate": 0.008823529411764706
+      },
+      "inconclusive_hard": {
+        "count": 96,
+        "total": 260,
+        "rate": 0.36923076923076925
+      },
+      "detection_typical": {
+        "count": 264,
+        "total": 300,
+        "rate": 0.88
+      },
+      "detection_disguised": {
+        "count": 0,
+        "total": 100,
+        "rate": 0
+      }
+    },
+    {
+      "families_to_accuse": 3,
+      "false_positive": {
+        "count": 0,
+        "total": 600,
+        "rate": 0
+      },
+      "false_positive_common": {
+        "count": 0,
+        "total": 340,
+        "rate": 0
+      },
+      "false_positive_hard": {
+        "count": 0,
+        "total": 260,
+        "rate": 0
+      },
+      "inconclusive_common": {
+        "count": 3,
+        "total": 340,
+        "rate": 0.008823529411764706
+      },
+      "inconclusive_hard": {
+        "count": 96,
+        "total": 260,
+        "rate": 0.36923076923076925
+      },
+      "detection_typical": {
+        "count": 69,
+        "total": 300,
+        "rate": 0.23
+      },
+      "detection_disguised": {
+        "count": 0,
+        "total": 100,
+        "rate": 0
+      }
+    }
+  ],
+  "seeds_range": {
+    "seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110
+    ],
+    "false_positive": {
+      "min": 0,
+      "max": 0.0016666666666666668,
+      "total": {
+        "count": 1,
+        "total": 6000,
+        "rate": 0.00016666666666666666
+      }
+    },
+    "inconclusive_common": {
+      "min": 0,
+      "max": 0.011764705882352941,
+      "total": {
+        "count": 24,
+        "total": 3400,
+        "rate": 0.007058823529411765
+      }
+    },
+    "detection_typical": {
+      "min": 0.8633333333333333,
+      "max": 0.89,
+      "total": {
+        "count": 2624,
+        "total": 3000,
+        "rate": 0.8746666666666667
+      }
+    },
+    "detection_disguised": {
+      "min": 0,
+      "max": 0,
+      "total": {
+        "count": 0,
+        "total": 1000,
+        "rate": 0
+      }
+    }
+  },
+  "examples": {
+    "organic_twin": {
+      "classification": "no_evidence",
+      "reason": "Nenhum sinal de entrega automatizada. O pico não terminou de uma vez: a maior queda em duas horas, descontada a queda normal do horário, foi de 48%. Nas madrugadas, entre 3h e 8h, quando este público costuma dormir, o volume ficou em no máximo 27% do horário mais forte. As contagens variaram como variam pessoas independentes: umas 52 views para cima ou para baixo, quando o acaso sozinho daria umas 16 views. O total acumulado nunca caiu. O pico chegou a 1.000 views por hora, 53 vezes o nível habitual deste vídeo; altura de pico não é sinal, porque é o que acontece quando um vídeo estoura. A subida foi brusca, de cerca de 21 para 370 views por hora em até duas horas, às 14h do dia 10; isso também acontece quando uma conta grande menciona o criador, e subida não é sinal. Isso não certifica que as views são de pessoas, só que os padrões procurados não aparecem.",
+      "families_fired": [],
+      "analyzed_window": {
+        "start": "2026-03-10T14:00:00-03:00",
+        "end": "2026-03-15T00:00:00-03:00",
+        "hours": 106,
+        "kind": "peak"
+      },
+      "signals": [
+        {
+          "signal": "abrupt_end",
+          "family": "abrupt_end",
+          "threshold": 0.7,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": false,
+          "value": 0.48,
+          "explanation": "O pico não terminou de uma vez: a maior queda em duas horas, descontada a queda normal do horário, foi de 48%."
+        },
+        {
+          "signal": "awake_at_night",
+          "family": "awake_at_night",
+          "threshold": 0.8,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": false,
+          "value": 0.27,
+          "explanation": "Nas madrugadas, entre 3h e 8h, quando este público costuma dormir, o volume ficou em no máximo 27% do horário mais forte."
+        },
+        {
+          "signal": "low_variation",
+          "family": "regularity",
+          "threshold": 0.35,
+          "fires_when": "below",
+          "evaluable": true,
+          "fired": false,
+          "value": 3.32,
+          "explanation": "As contagens variaram como variam pessoas independentes: umas 52 views para cima ou para baixo, quando o acaso sozinho daria umas 16 views."
+        },
+        {
+          "signal": "round_counts",
+          "family": "regularity",
+          "threshold": 0.4,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": false,
+          "value": 0,
+          "explanation": "As contagens não se concentram em centenas exatas."
+        },
+        {
+          "signal": "removal",
+          "family": "removal",
+          "threshold": 0.01,
+          "fires_when": "above",
+          "minimum_views": 100,
+          "evaluable": true,
+          "fired": false,
+          "value": 0,
+          "explanation": "O total acumulado nunca caiu."
+        }
+      ],
+      "context": {
+        "habitual_views_per_hour": 19,
+        "peak_views_per_hour": 1028,
+        "peak_multiple": 53.4,
+        "window_views": 26115,
+        "step_rise": true,
+        "peak_windows": 1
+      },
+      "insufficient_data": [],
+      "rule": "suspeito exige duas famílias de sinais; com uma, inconclusivo",
+      "criteria_version": "v1",
+      "data_quality": {
+        "hours": 168,
+        "missing_readings": 0,
+        "longest_gap_hours": 0,
+        "drop_hours": 0
+      },
+      "audience_timezone": "America/Sao_Paulo"
+    },
+    "bought_twin": {
+      "classification": "suspicious",
+      "reason": "A queda das 15h do dia 11 foi abrupta: em duas horas, o volume foi de cerca de 1.000 para 28 views por hora. Descontada a queda normal desse horário (9%), são 97% a menos, e o volume não voltou no dia seguinte. O volume não diminuiu de madrugada: entre 2h e 7h do dia 11, quando este público costuma dormir, ficou em 97% do horário mais forte (fora do pico, essas horas caíam para 32%). Entre 14h do dia 10 e 16h do dia 11, o vídeo recebeu cerca de 970 views por hora, variando umas 8 views para cima ou para baixo; com esse volume, pessoas independentes fariam a contagem variar umas 31 views. Três sinais independentes concordam: o padrão é compatível com entrega automatizada, o que não identifica quem a contratou. Esse alcance precisa de revisão antes de entrar na decisão de renovação.",
+      "families_fired": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ],
+      "analyzed_window": {
+        "start": "2026-03-10T14:00:00-03:00",
+        "end": "2026-03-11T16:00:00-03:00",
+        "hours": 26,
+        "kind": "peak"
+      },
+      "signals": [
+        {
+          "signal": "abrupt_end",
+          "family": "abrupt_end",
+          "threshold": 0.7,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": true,
+          "value": 0.97,
+          "explanation": "A queda das 15h do dia 11 foi abrupta: em duas horas, o volume foi de cerca de 1.000 para 28 views por hora. Descontada a queda normal desse horário (9%), são 97% a menos, e o volume não voltou no dia seguinte."
+        },
+        {
+          "signal": "awake_at_night",
+          "family": "awake_at_night",
+          "threshold": 0.8,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": true,
+          "value": 0.97,
+          "explanation": "O volume não diminuiu de madrugada: entre 2h e 7h do dia 11, quando este público costuma dormir, ficou em 97% do horário mais forte (fora do pico, essas horas caíam para 32%)."
+        },
+        {
+          "signal": "low_variation",
+          "family": "regularity",
+          "threshold": 0.35,
+          "fires_when": "below",
+          "evaluable": true,
+          "fired": true,
+          "value": 0.26,
+          "explanation": "Entre 14h do dia 10 e 16h do dia 11, o vídeo recebeu cerca de 970 views por hora, variando umas 8 views para cima ou para baixo; com esse volume, pessoas independentes fariam a contagem variar umas 31 views."
+        },
+        {
+          "signal": "round_counts",
+          "family": "regularity",
+          "threshold": 0.4,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": false,
+          "value": 0,
+          "explanation": "As contagens não se concentram em centenas exatas."
+        },
+        {
+          "signal": "removal",
+          "family": "removal",
+          "threshold": 0.01,
+          "fires_when": "above",
+          "minimum_views": 100,
+          "evaluable": true,
+          "fired": false,
+          "value": 0,
+          "explanation": "O total acumulado nunca caiu."
+        }
+      ],
+      "context": {
+        "habitual_views_per_hour": 18,
+        "peak_views_per_hour": 1050,
+        "peak_multiple": 56.9,
+        "window_views": 24510,
+        "step_rise": true,
+        "peak_windows": 1
+      },
+      "insufficient_data": [],
+      "rule": "suspeito exige duas famílias de sinais; com uma, inconclusivo",
+      "criteria_version": "v1",
+      "data_quality": {
+        "hours": 168,
+        "missing_readings": 0,
+        "longest_gap_hours": 0,
+        "drop_hours": 0
+      },
+      "audience_timezone": "America/Sao_Paulo"
+    },
+    "algorithm_exit": {
+      "classification": "inconclusive",
+      "reason": "A queda das 14h do dia 12 foi abrupta: em duas horas, o volume foi de cerca de 860 para 190 views por hora. Descontada a queda normal desse horário (17%), são 74% a menos, e o volume não voltou no dia seguinte. Isso acontece quando um pacote de views acaba, mas também quando a plataforma para de recomendar o vídeo ou quando um impulsionamento pago termina. Os outros sinais são de público humano. Nas madrugadas, entre 2h e 7h, quando este público costuma dormir, o volume ficou em no máximo 25% do horário mais forte. As contagens variaram como variam pessoas independentes: umas 223 views para cima ou para baixo, quando o acaso sozinho daria umas 36 views. O total acumulado nunca caiu. Um indício isolado não basta para acusar. O pico chegou a 3.100 views por hora, 48 vezes o nível habitual deste vídeo; altura de pico não é sinal, porque é o que acontece quando um vídeo estoura. A subida foi brusca, de cerca de 86 para 1.600 views por hora em até duas horas, às 19h do dia 10; isso também acontece quando uma conta grande menciona o criador, e subida não é sinal.",
+      "families_fired": [
+        "abrupt_end"
+      ],
+      "analyzed_window": {
+        "start": "2026-03-10T19:00:00-03:00",
+        "end": "2026-03-12T23:00:00-03:00",
+        "hours": 52,
+        "kind": "peak"
+      },
+      "signals": [
+        {
+          "signal": "abrupt_end",
+          "family": "abrupt_end",
+          "threshold": 0.7,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": true,
+          "value": 0.74,
+          "explanation": "A queda das 14h do dia 12 foi abrupta: em duas horas, o volume foi de cerca de 860 para 190 views por hora. Descontada a queda normal desse horário (17%), são 74% a menos, e o volume não voltou no dia seguinte."
+        },
+        {
+          "signal": "awake_at_night",
+          "family": "awake_at_night",
+          "threshold": 0.8,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": false,
+          "value": 0.25,
+          "explanation": "Nas madrugadas, entre 2h e 7h, quando este público costuma dormir, o volume ficou em no máximo 25% do horário mais forte."
+        },
+        {
+          "signal": "low_variation",
+          "family": "regularity",
+          "threshold": 0.35,
+          "fires_when": "below",
+          "evaluable": true,
+          "fired": false,
+          "value": 6.14,
+          "explanation": "As contagens variaram como variam pessoas independentes: umas 223 views para cima ou para baixo, quando o acaso sozinho daria umas 36 views."
+        },
+        {
+          "signal": "round_counts",
+          "family": "regularity",
+          "threshold": 0.4,
+          "fires_when": "above",
+          "evaluable": true,
+          "fired": false,
+          "value": 0,
+          "explanation": "As contagens não se concentram em centenas exatas."
+        },
+        {
+          "signal": "removal",
+          "family": "removal",
+          "threshold": 0.01,
+          "fires_when": "above",
+          "minimum_views": 100,
+          "evaluable": true,
+          "fired": false,
+          "value": 0,
+          "explanation": "O total acumulado nunca caiu."
+        }
+      ],
+      "context": {
+        "habitual_views_per_hour": 65,
+        "peak_views_per_hour": 3092,
+        "peak_multiple": 47.9,
+        "window_views": 67743,
+        "step_rise": true,
+        "peak_windows": 1
+      },
+      "insufficient_data": [],
+      "rule": "suspeito exige duas famílias de sinais; com uma, inconclusivo",
+      "criteria_version": "v1",
+      "data_quality": {
+        "hours": 168,
+        "missing_readings": 0,
+        "longest_gap_hours": 0,
+        "drop_hours": 0
+      },
+      "audience_timezone": "America/Sao_Paulo"
+    }
+  },
+  "outcomes": [
+    {
+      "id": "small_creator-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-053",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-054",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-055",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-058",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-059",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-061",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-062",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-063",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-064",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-065",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-066",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-067",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-068",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-069",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-070",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-071",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-072",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-073",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-074",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-075",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-076",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-077",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-078",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-079",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-080",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-081",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-082",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-083",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-084",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-085",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-086",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-087",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-088",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-089",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-090",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-091",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-092",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-093",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-094",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-095",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-096",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-097",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-098",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-099",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_creator-100",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-053",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-054",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-055",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-058",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-059",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "slow_growth-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-053",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-054",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "weekend_peak-055",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-058",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-059",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "weekend_peak-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-038",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "organic_viral-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-053",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-054",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-055",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-058",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-059",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-061",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-062",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-063",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-064",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-065",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-066",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-067",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-068",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-069",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-070",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-071",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-072",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-073",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-074",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-075",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-076",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-077",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-078",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-079",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-080",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-081",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-082",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-083",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-084",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-085",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-086",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-087",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-088",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-089",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-090",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-091",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-092",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-093",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-094",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-095",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-096",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-097",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-098",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-099",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-100",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-101",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-102",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-103",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-104",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-105",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-106",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-107",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-108",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-109",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-110",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "organic_viral-111",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-112",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-113",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-114",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-115",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-116",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-117",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-118",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-119",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "organic_viral-120",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-053",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-054",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-055",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-058",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-059",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-061",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-062",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-063",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-064",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-065",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-066",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-067",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-068",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-069",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-070",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-071",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-072",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-073",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-074",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-075",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-076",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-077",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-078",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-079",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "big_account_mention-080",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-001",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-002",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-003",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-007",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-009",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-014",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-016",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-018",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-019",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-021",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-023",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-024",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-026",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-029",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-030",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-033",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-034",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-035",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-036",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-038",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-039",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-040",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-042",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-043",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-044",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-045",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-047",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-048",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-049",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-050",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-053",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-054",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-055",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "algorithm_exit-058",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-059",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "algorithm_exit-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-001",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-002",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-003",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-005",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-006",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-007",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-010",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-011",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-012",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-013",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-015",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-016",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-017",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-018",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-019",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-020",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-022",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-023",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-024",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-026",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-028",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-029",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-030",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-032",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-033",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-034",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-035",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-036",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-037",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-038",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-039",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-041",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-042",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-043",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-044",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-045",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-046",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-047",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-048",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-049",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-050",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "paid_promotion-052",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-053",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-054",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-055",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-056",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-057",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-058",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-059",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "paid_promotion-060",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-003",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-006",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-009",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-013",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-018",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-020",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-026",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-032",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-033",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-039",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-042",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-051",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-052",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-053",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-054",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-055",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "multi_timezone-056",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-057",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-058",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-059",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "multi_timezone-060",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "bought_plateau-001",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-002",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-003",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-004",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-005",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-006",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-007",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-008",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-009",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-010",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-011",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-012",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-013",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-014",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-015",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-016",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-017",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-018",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-019",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-020",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-021",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-022",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-023",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-024",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-025",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-026",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-027",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-028",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "bought_plateau-029",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "bought_plateau-030",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-031",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-032",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-033",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-034",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-035",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-036",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-037",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-038",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-039",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-040",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-041",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-042",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-043",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-044",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-045",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-046",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-047",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-048",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-049",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-050",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-051",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-052",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-053",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-054",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-055",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-056",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-057",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-058",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-059",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-060",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-061",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-062",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-063",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-064",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-065",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-066",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-067",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-068",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-069",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-070",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-071",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-072",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-073",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-074",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-075",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-076",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-077",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-078",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "bought_plateau-079",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "bought_plateau-080",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "drip_feed-001",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-002",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-003",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-004",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-005",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-006",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-007",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-008",
+      "classification": "inconclusive",
+      "families": [
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "drip_feed-009",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-010",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-011",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-012",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-013",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-014",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-015",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-016",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-017",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-018",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-019",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-020",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-021",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-022",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-023",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-024",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-025",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-026",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-027",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-028",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-029",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-030",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-031",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-032",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-033",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-034",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-035",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-036",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-037",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-038",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-039",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-040",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-041",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-042",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-043",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-044",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-045",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-046",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-047",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-048",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-049",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-050",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-051",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-052",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-053",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-054",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-055",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-056",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-057",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-058",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-059",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "drip_feed-060",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "regularity"
+      ]
+    },
+    {
+      "id": "spike_then_removal-001",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-002",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-003",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-004",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-005",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-006",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-007",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-008",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-009",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-010",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-011",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-012",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-013",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-014",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-015",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-016",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-017",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-018",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-019",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-020",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-021",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-022",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-023",
+      "classification": "suspicious",
+      "families": [
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-024",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-025",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-026",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-027",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-028",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-029",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-030",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-031",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-032",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-033",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-034",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-035",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-036",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-037",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-038",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-039",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-040",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-041",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-042",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-043",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-044",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-045",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-046",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-047",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-048",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-049",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "spike_then_removal-050",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "removal"
+      ]
+    },
+    {
+      "id": "viral_plus_package-001",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-002",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-003",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-004",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-005",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "viral_plus_package-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "viral_plus_package-008",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "viral_plus_package-010",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-011",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-012",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-013",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-014",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-015",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-016",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-017",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-018",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-019",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-020",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-021",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-022",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-023",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-024",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-025",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-026",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-027",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-028",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-029",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-030",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-031",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-032",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-033",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "viral_plus_package-035",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-036",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-037",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-038",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-039",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-040",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-041",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-042",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-043",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-044",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-045",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-046",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-047",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "viral_plus_package-049",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-050",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-051",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-052",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-053",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-054",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-055",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-056",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-057",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-058",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-059",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-060",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-061",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-062",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-063",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-064",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-065",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-066",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-067",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-068",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "awake_at_night"
+      ]
+    },
+    {
+      "id": "viral_plus_package-069",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "viral_plus_package-070",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "round_batches-001",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-002",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-003",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-004",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-005",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-006",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-007",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-008",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-009",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-010",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-011",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-012",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-013",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-014",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-015",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-016",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-017",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-018",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-019",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-020",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-021",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-022",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-023",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-024",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-025",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-026",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-027",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-028",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-029",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-030",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-031",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-032",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-033",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-034",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-035",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-036",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-037",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-038",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-039",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "round_batches-040",
+      "classification": "suspicious",
+      "families": [
+        "abrupt_end",
+        "regularity"
+      ]
+    },
+    {
+      "id": "human_mimic-001",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "human_mimic-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-030",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "human_mimic-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-040",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "human_mimic-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-046",
+      "classification": "inconclusive",
+      "families": [
+        "abrupt_end"
+      ]
+    },
+    {
+      "id": "human_mimic-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "human_mimic-050",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-001",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-002",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-003",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-004",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-005",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-006",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-007",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-008",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-009",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-010",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-011",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-012",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-013",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-014",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-015",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-016",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-017",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-018",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-019",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-020",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-021",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-022",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-023",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-024",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-025",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-026",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-027",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-028",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-029",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-030",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-031",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-032",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-033",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-034",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-035",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-036",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-037",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-038",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-039",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-040",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-041",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-042",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-043",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-044",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-045",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-046",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-047",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-048",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-049",
+      "classification": "no_evidence",
+      "families": []
+    },
+    {
+      "id": "small_purchase-050",
+      "classification": "no_evidence",
+      "families": []
+    }
+  ]
+}
